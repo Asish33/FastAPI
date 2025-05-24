@@ -29,4 +29,12 @@ def update_todo_by_id(todo_id: int, updated_todo: Todo):
             todos[index] = updated_todo  
             return updated_todo
     raise HTTPException(status_code=404, detail='No Todo present with given Id')
+
+@app.delete('/todo/{todo_id}', response_model=str)
+def delete_todo(todo_id:int):
+    for index,todo in enumerate(todos):
+        if todo.id == todo_id:
+            todos.pop(index)
+            return 'todo with given id is deleted'
+    raise HTTPException(status_code=404,detail='No Todo present with given id')
     
