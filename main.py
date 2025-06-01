@@ -31,7 +31,7 @@ async def update_todo_by_id(todo_id: int, updated_todo: Todo):
     raise HTTPException(status_code=404, detail='No Todo present with given Id')
 
 @app.delete('/todo/{todo_id}', response_model=str)
-def delete_todo(todo_id:int):
+async def delete_todo(todo_id:int):
     for index,todo in enumerate(todos):
         if todo.id == todo_id:
             todos.pop(index)
