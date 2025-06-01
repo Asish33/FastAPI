@@ -23,7 +23,7 @@ def todo_by_id(todo_id:int):
     raise HTTPException(status_code=404, detail='No Todo Present with the given id')
 
 @app.put('/todos/{todo_id}', response_model=Todo)
-def update_todo_by_id(todo_id: int, updated_todo: Todo):
+async def update_todo_by_id(todo_id: int, updated_todo: Todo):
     for index, todo in enumerate(todos):
         if todo.id == todo_id:
             todos[index] = updated_todo  
